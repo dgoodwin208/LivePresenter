@@ -2,6 +2,8 @@
 
 An interactive PDF presentation viewer with integrated ElevenLabs voice AI agent. Navigate slides using voice commands, view conversation transcripts, and control presentations through both UI and voice.
 
+![LivePresenter Screenshot](docs/screenshot.jpg)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## ✨ Features
