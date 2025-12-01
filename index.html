@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentation Viewer</title>
+
+  <!-- Privacy: Block bots, crawlers, and indexing -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="bingbot" content="noindex, nofollow">
+
+  <!-- Presentation Styles -->
+  <link rel="stylesheet" href="./css/presentation.css">
+
+  <!-- PDF.js Library from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    // Configure PDF.js worker
+    if (window.pdfjsLib) {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      console.log('[PDF.js] Library loaded and worker configured');
+    }
+  </script>
+
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  ">
+    <h1 style="color: white; margin-bottom: 2rem; font-size: 2rem;">📊 Loading Presentation</h1>
+
+    <div style="width: 300px; background: rgba(255,255,255,0.1); border-radius: 8px; height: 8px; overflow: hidden;">
+      <div id="loading-bar" style="
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #4CAF50, #8BC34A);
+        transition: width 0.3s ease;
+      "></div>
+    </div>
+
+    <p id="loading-text" style="color: rgba(255,255,255,0.7); margin-top: 1rem;">Initializing...</p>
+  </div>
+
+  <!-- Main Application Container (hidden until loaded) -->
+  <div id="app" style="opacity: 0; visibility: hidden;">
+    <!-- PDF Canvas Container -->
+    <div id="pdf-container">
+      <!-- Canvas will be inserted here by PDFRenderer -->
+    </div>
+
+    <!-- Navigation Controls Container -->
+    <div id="controls-container">
+      <!-- Controls will be inserted here by UIControls -->
+      <!-- Voice button will be inline within nav-controls -->
+    </div>
+  </div>
+
+  <!-- Main Application Module -->
+  <script type="module" src="./main.js"></script>
+
+  <!-- Development Helper Script -->
+  <script>
+    // Log when all resources are loaded
+    window.addEventListener('load', () => {
+      console.log('[Page] All resources loaded');
+      console.log('[Page] PDF.js available:', !!window.pdfjsLib);
+      console.log('[Page] Main module loaded:', !!window.initPresentation);
+      console.log('[Page] API exposed:', !!window.pdfController);
+      console.log('[Page] Client tools available:', !!window.clientTools);
+    });
+
+    // Global error handler for debugging
+    window.addEventListener('error', (event) => {
+      console.error('[Page] Global error:', event.error || event.message);
+    });
+
+    // Unhandled promise rejection handler
+    window.addEventListener('unhandledrejection', (event) => {
+      console.error('[Page] Unhandled promise rejection:', event.reason);
+    });
+  </script>
+</body>
+</html>
