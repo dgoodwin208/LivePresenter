@@ -5,8 +5,12 @@ config.js
 presentation.pdf
 *.pdf
 
+# Auto-generated files
+modules/slide-titles.js
+
 # User's custom avatar
 avatar.png
+avatar.jpg
 sp-avatar.png
 
 # OS files

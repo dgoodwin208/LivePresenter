@@ -180,7 +180,7 @@ body {
 .sp-avatar {
   width: 100%;
   height: 100%;
-  /* Add your own avatar image here: background-image: url('../avatar.png'); */
+  background-image: url('../avatar.jpg');
   background-size: cover;
   background-position: center;
 }
